@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="library.css"> 
-    <!-- <script src="library.js" defer></script> -->
+    <script src="library.js" defer></script>
     <title>Library</title>
 </head>
 <body>
@@ -36,20 +36,19 @@
                         placeholder='Length'>
                 </div>
                 <div class='holder' id='read-holder'>
-                    <label for='read'>Mark if read:</label>
-                    <input
-                        type="checkbox"
+                    <label for='read'>Read:</label>
+                    <select
                         id='read'
                         name='read'>
+                        <option value='yes'>Yes</option>
+                        <option value='no'>No</option>
+                    </select>
                 </div>
             </div>
             <div id='send'>
                 <button id='btn' type='submit'>Add book</button>
             </div>
-
         </form>
     </div>
-    
-
 </body>
 </html>
