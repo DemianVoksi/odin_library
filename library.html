@@ -4,27 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="library.css">
+    <link rel="stylesheet" href="library.css"> 
     <!-- <script src="library.js" defer></script> -->
     <title>Library</title>
 </head>
 <body>
-    <header>
-        <div id="title"></div>
-    </header>
+    <div id='title-holder'>
+        <div id='title'>My Library</div>
+    </div id='form-holder'>
+        <form id='form'>
+            <div id='options'>
+                <div class='holder' id='book-holder'>
+                    <input 
+                        type='text' 
+                        id='book' 
+                        name='book' 
+                        placeholder='Book name'>
+                </div>
+                <div class='holder' id='author-holder'>
+                    <input 
+                        type='text' 
+                        id='author' 
+                        name='author' 
+                        placeholder='Author'>
+                </div>
+                <div class='holder' id='length-holder'>
+                    <input
+                        type='text'
+                        id='length'
+                        name='length'
+                        placeholder='Length'>
+                </div>
+                <div class='holder' id='read-holder'>
+                    <label for='read'>Mark if read:</label>
+                    <input
+                        type="checkbox"
+                        id='read'
+                        name='read'>
+                </div>
+            </div>
+            <div id='send'>
+                <button id='btn' type='submit'>Add book</button>
+            </div>
+
+        </form>
+    </div>
     
-    <div id="add-book">
-        <div id="enter-value">
-
-        </div>
-        <div id="submit">
-
-        </div>
-    </div>
-
-    <div id="list-books">
-        
-    </div>
 
 </body>
 </html>
