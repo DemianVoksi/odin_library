@@ -1,7 +1,15 @@
+// Library variable
 let myLibrary = [
-  
+  {
+    name: "Gardens of the Moon",
+    author: "Steven Erikson",
+    length: 712,
+    read: "yes"
+  }
 ];
 
+
+// Book object
 function Book(name, author, length, read) {
   this.name = name
   this.author = author
@@ -9,21 +17,7 @@ function Book(name, author, length, read) {
   this.read = read
 }
 
-
-
-
-
-// function addBook() {
-//   let gotm = new Book('Gardens of the Moon', 'Steven Erikson', 712, true);
-//   myLibrary.push(gotm);
-// }
-
-// addBook()
-
-// myLibrary.push(new Book('Deadhouse Gates', 'Steven Erikson', 900, true));
-
-// console.log(myLibrary);
-
+// Query selectors 
 let form = document.querySelector("#form");
 let book = document.querySelector("#book");
 let author = document.querySelector("#author");
@@ -32,6 +26,13 @@ let read = document.querySelector("#read");
 
 
 form.addEventListener('submit', function(e) {
+  /* 
+  Event listener for the form. 
+  Takes in the value of the form input,
+  creates a new Book object with that values
+  and pushes the Book to the myLibrary array.
+  */
+
   e.preventDefault()
 
   let bookValue = book.value;
@@ -39,11 +40,12 @@ form.addEventListener('submit', function(e) {
   let lengthValue = length.value;
   let readValue = read.value;
 
+  /* Only for practice, delete in final version. */
   console.log(bookValue);
   console.log(authorValue);
   console.log(lengthValue);
   console.log(readValue);
 
   myLibrary.push(new Book(bookValue, authorValue, lengthValue, readValue));
-  console.log(myLibrary);
+  console.log(myLibrary); //Only for practice, delete in final version.
 });
