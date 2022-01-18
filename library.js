@@ -40,12 +40,23 @@ form.addEventListener('submit', function(e) {
   let lengthValue = length.value;
   let readValue = read.value;
 
-  /* Only for practice, delete in final version. */
+  /* Only for practice, delete in final version.
   console.log(bookValue);
   console.log(authorValue);
   console.log(lengthValue);
-  console.log(readValue);
+  console.log(readValue); */
 
   myLibrary.push(new Book(bookValue, authorValue, lengthValue, readValue));
-  console.log(myLibrary); //Only for practice, delete in final version.
+  /* Only for practice, delete in final version.
+  console.log(myLibrary);*/ 
 });
+
+/*
+To do: 
+
+1) Find out how to use the id for the library. DONE remove parent element?
+2) Make a function which pulls data from the library and renders it 
+   as an item in the list with the appropriate html and css.
+3) Make a button which changes read status.
+4) Make a button which deletes the entry.
+*/
