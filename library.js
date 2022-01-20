@@ -25,6 +25,22 @@ let length = document.querySelector("#length");
 let read = document.querySelector("#read");
 
 
+function setReadValue() {
+  if (readValue == "yes") {
+    readValue = true;
+  } else {
+    readValue = false;
+  }
+}
+
+function changeReadValue() {
+  if (readValue == true) {
+    readValue = false;
+  } else {
+    readValue = true;
+  }
+}
+
 form.addEventListener('submit', function(e) {
   /* 
   Event listener for the form. 
@@ -40,6 +56,7 @@ form.addEventListener('submit', function(e) {
   let lengthValue = length.value;
   let readValue = read.value;
 
+  setReadValue()
   /* Only for practice, delete in final version.
   console.log(bookValue);
   console.log(authorValue);
@@ -55,8 +72,9 @@ form.addEventListener('submit', function(e) {
 To do: 
 
 1) Find out how to use the id for the library. DONE remove parent element?
+1.1) Check out localStorage for Javascript
 2) Make a function which pulls data from the library and renders it 
    as an item in the list with the appropriate html and css.
-3) Make a button which changes read status.
+3) Make a button which changes read status. DONE
 4) Make a button which deletes the entry.
 */
