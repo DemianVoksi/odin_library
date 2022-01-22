@@ -62,12 +62,7 @@ form.addEventListener('submit', function(e) {
   let lengthValue = length.value;
   let readValue = read.value;
 
-  setReadValue()
-  /* Only for practice, delete in final version.
-  console.log(bookValue);
-  console.log(authorValue);
-  console.log(lengthValue);
-  console.log(readValue); */
+  //setReadValue()
 
   myLibrary.push(new Book(bookValue, authorValue, lengthValue, readValue));
   /* Only for practice, delete in final version.
@@ -80,10 +75,13 @@ form.addEventListener('submit', function(e) {
 
 /* ------ GENERATING A NEW LIST OF BOOKS WITH THE LIBRARY DATA ------ */
 
-function renderEntry(boo, ind) {
-  /* Renders an new list item */
+let listHolder = document.getElementById('list-holder');
+
+
+function renderEntry(boo, index) {
+  /* Renders an new list item.
+  Used by renderLibrary() */
   
-  let listHolder = document.getElementsByClassName('list-holder');
 
   let listSmaller = document.createElement('div');
   listSmaller.setAttribute('class', 'list-smaller');
@@ -113,25 +111,42 @@ function renderEntry(boo, ind) {
 
   let buttons = document.createElement('div');
   buttons.setAttribute('class', 'buttons');
+  buttons.setAttribute('id', 'buttons');
   listSmaller.appendChild(buttons);
 
   let readSmaller = document.createElement('button');
   readSmaller.setAttribute('class', 'read-smaller');
   buttons.appendChild(readSmaller);
 
+  createDeleteButton(index);
+
+}
+
+
+let createDeleteButton = function(index) {
   let deleteSmaller = document.createElement('button');
+  let buttons = document.getElementById('buttons');
+
   deleteSmaller.setAttribute('class', 'delete-smaller');
   buttons.appendChild(deleteSmaller);
+  deleteSmaller.addEventListener('click', () => {
+    e.preventDefault()
+    myLibrary.splice(index, 1);
+    renderLibrary()
+  });
 }
 
 
 function renderLibrary() {
+  /* Renders the whole library stored in myLibrary.
+  Uses renderEntry() */
 
   myLibrary.forEach((book, index) => {
-    renderEntry(book)
+    renderEntry(book, index)
   });
 }
 
+renderLibrary();
 /*
 To do: 
 
