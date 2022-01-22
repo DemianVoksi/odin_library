@@ -1,3 +1,6 @@
+/* ------ PUTTING A BOOK INTO A LIBRARY ------ */
+
+
 // Library variable
 let myLibrary = [
   {
@@ -26,6 +29,8 @@ let read = document.querySelector("#read");
 
 
 function setReadValue() {
+  /* Changes the read value from string to boolean */
+
   if (readValue == "yes") {
     readValue = true;
   } else {
@@ -33,7 +38,9 @@ function setReadValue() {
   }
 }
 
-function changeReadValue() {
+function toggleReadValue() {
+  /* Toggles the read value */
+
   if (readValue == true) {
     readValue = false;
   } else {
@@ -43,9 +50,8 @@ function changeReadValue() {
 
 form.addEventListener('submit', function(e) {
   /* 
-  Event listener for the form. 
-  Takes in the value of the form input,
-  creates a new Book object with that values
+  Event listener for the form. Takes in the value of the 
+  form input, creates a new Book object with that values 
   and pushes the Book to the myLibrary array.
   */
 
@@ -68,11 +74,55 @@ form.addEventListener('submit', function(e) {
   console.log(myLibrary);*/ 
 });
 
+
+/* ------------ */ 
+
+
+/* ------ GENERATING A NEW LIST OF BOOKS WITH THE LIBRARY DATA ------ */
+
+function renderEntry() {
+  /* Renders an new list item */
+  
+  let listHolder = document.getElementsByClassName('list-holder');
+
+  let listSmaller = document.createElement('div');
+  listSmaller.setAttribute('class', 'list-smaller');
+  listHolder.appendChild(listSmaller);
+
+  let bookData = document.createElement('div');
+  bookData.setAttribute('class', 'book-data');
+  listSmaller.appendChild(bookData);
+
+  let nameSmaller = document.createElement('div');
+  nameSmaller.setAttribute('class', 'name-smaller');
+  bookData.appendChild(nameSmaller);
+
+  let authorSmaller = document.createElement('div');
+  authorSmaller.setAttribute('class', 'author-smaller');
+  bookData.appendChild(authorSmaller);
+
+  let lengthSmaller = document.createElement('div');
+  lengthSmaller.setAttribute('class', 'length-smaller');
+  bookData.appendChild(lengthSmaller);
+
+  let buttons = document.createElement('div');
+  buttons.setAttribute('class', 'buttons');
+  listSmaller.appendChild(buttons);
+
+  let readSmaller = document.createElement('button');
+  readSmaller.setAttribute('class', 'read-smaller');
+  buttons.appendChild(readSmaller);
+
+  let deleteSmaller = document.createElement('button');
+  deleteSmaller.setAttribute('class', 'delete-smaller');
+  buttons.appendChild(deleteSmaller);
+}
+
+
 /*
 To do: 
 
-1) Find out how to use the id for the library. DONE remove parent element?
-1.1) Check out localStorage for Javascript
+1) Find out how to use the id for the library. DONE use index
 2) Make a function which pulls data from the library and renders it 
    as an item in the list with the appropriate html and css.
 3) Make a button which changes read status. DONE

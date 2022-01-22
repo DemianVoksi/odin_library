@@ -91,19 +91,31 @@ body {
   justify-content: stretch;
 }
 
-.list-name,
-.list-author,
-.list-length,
-.list-read,
-.list-delete {
+.book-data {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+}
+
+.name-smaller,
+.author-smaller {
+  width: 40%;
+}
+
+.length-smaller {
   width: 20%;
 }
 
-.list-read,
-.list-delete {
+.buttons {
+  width: 20%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.delete-smaller {
+  display: flex;
+  
 }
 
 .name-smaller,
@@ -119,13 +131,6 @@ body {
   font-weight: 300;
 }
 
-.list-name,
-.list-author,
-.list-length {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
 
 .read-smaller,
 .delete-smaller {
