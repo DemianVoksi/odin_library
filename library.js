@@ -80,7 +80,7 @@ form.addEventListener('submit', function(e) {
 
 /* ------ GENERATING A NEW LIST OF BOOKS WITH THE LIBRARY DATA ------ */
 
-function renderEntry() {
+function renderEntry(boo, ind) {
   /* Renders an new list item */
   
   let listHolder = document.getElementsByClassName('list-holder');
@@ -96,14 +96,20 @@ function renderEntry() {
   let nameSmaller = document.createElement('div');
   nameSmaller.setAttribute('class', 'name-smaller');
   bookData.appendChild(nameSmaller);
+  let nameText = document.createTextNode(boo.name);
+  nameSmaller.appendChild(nameText);
 
   let authorSmaller = document.createElement('div');
   authorSmaller.setAttribute('class', 'author-smaller');
   bookData.appendChild(authorSmaller);
+  let authorText = document.createTextNode(boo.author);
+  authorSmaller.appendChild(authorText);
 
   let lengthSmaller = document.createElement('div');
   lengthSmaller.setAttribute('class', 'length-smaller');
   bookData.appendChild(lengthSmaller);
+  let lengthText = document.createTextNode(boo.length);
+  lengthSmaller.appendChild(lengthText);
 
   let buttons = document.createElement('div');
   buttons.setAttribute('class', 'buttons');
@@ -118,6 +124,13 @@ function renderEntry() {
   buttons.appendChild(deleteSmaller);
 }
 
+
+function renderLibrary() {
+
+  myLibrary.forEach((book, index) => {
+    renderEntry(book)
+  });
+}
 
 /*
 To do: 
