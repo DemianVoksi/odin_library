@@ -8,6 +8,12 @@ let myLibrary = [
     author: "Steven Erikson",
     length: 712,
     read: "yes"
+  },
+  {
+    name: "The Hobbit",
+    author: "JRR Tolkien",
+    length: 310,
+    read: "yes"
   }
 ];
 
@@ -26,6 +32,7 @@ let book = document.querySelector("#book");
 let author = document.querySelector("#author");
 let length = document.querySelector("#length");
 let read = document.querySelector("#read");
+let listHolder = document.querySelector('.list-holder'); // class selector doesn't work but id an query do
 
 
 function setReadValue() {
@@ -36,7 +43,6 @@ function setReadValue() {
   } else {
     readValue = false;
   }
-  return readValue;
 }
 
 function toggleReadValue() {
@@ -52,8 +58,8 @@ function toggleReadValue() {
 form.addEventListener('submit', function(e) {
   /* 
   Event listener for the form. Takes in the value of the 
-  form input, creates a new Book object with that values 
-  and pushes the Book to the myLibrary array.
+  form input, creates a new Book object with that values, 
+  pushes the Book to the myLibrary array and renders it.
   */
 
   e.preventDefault()
@@ -66,23 +72,48 @@ form.addEventListener('submit', function(e) {
   //setReadValue()
 
   myLibrary.push(new Book(bookValue, authorValue, lengthValue, readValue));
-  /* Only for practice, delete in final version.
-  console.log(myLibrary);*/ 
+  /* Only for practice, delete in final version. */
+  console.log(myLibrary);
+
+  renderEntry(myLibrary.at(-1), myLibrary.indexOf(myLibrary.at(-1)));
 });
 
 
 /* ------------ */ 
 
+function removeAllChildren() {
+  /* Removes all child nodes from the main list container. 
+  Used by delete button event listener and renderLibrary(). */
 
-/* ------ GENERATING A NEW LIST OF BOOKS WITH THE LIBRARY DATA ------ */
+  let listHolder = document.querySelector('.list-holder');
+  while (listHolder.firstChild) {
+    listHolder.removeChild(listHolder.firstChild);
+  }
+};
 
-let listHolder = document.getElementById('list-holder');
 
+// function createDeleteButton(index) {
+//   /* Creates the delete button. Used by renderEntry() */
+
+//   let deleteSmaller = document.createElement('button');
+//   let buttons = document.querySelector('.buttons');
+//   deleteSmaller.setAttribute('class', 'delete-smaller');
+//   buttons.appendChild(deleteSmaller);
+
+//   let del = document.querySelector('.delete-smaller');
+//   del.innerHTML = 'Delete book';
+
+//   deleteSmaller.addEventListener('click', (e) => {
+//     e.preventDefault()
+//     myLibrary.splice(index, 1);
+//     removeAllChildren();
+//     renderLibrary();
+// });
+// }
 
 function renderEntry(boo, index) {
   /* Renders an new list item.
-  Used by renderLibrary() */
-  
+  Used by renderLibrary() */ 
 
   let listSmaller = document.createElement('div');
   listSmaller.setAttribute('class', 'list-smaller');
@@ -112,48 +143,62 @@ function renderEntry(boo, index) {
 
   let buttons = document.createElement('div');
   buttons.setAttribute('class', 'buttons');
-  buttons.setAttribute('id', 'buttons');
   listSmaller.appendChild(buttons);
 
   let readSmaller = document.createElement('button');
   readSmaller.setAttribute('class', 'read-smaller');
   buttons.appendChild(readSmaller);
+  readSmaller.innerHTML = setReadText(boo.read);
+  // let btn = document.querySelector('.read-smaller');
+  // btn.innerHTML = setReadText(boo.read);
 
-  createDeleteButton(index);
+  readSmaller.addEventListener('click', function(e) {
+    e.preventDefault()
+    //let btn = document.querySelector('.read-smaller');
 
-}
+    if (readSmaller.innerHTML == "Read") {
+    readSmaller.innerHTML = "Unread";
+  } else {
+    readSmaller.innerHTML = "Read";
+  }
+  });
 
+//  createDeleteButton(index);
 
-let createDeleteButton = function(index) {
   let deleteSmaller = document.createElement('button');
-  let buttons = document.getElementById('buttons');
-
   deleteSmaller.setAttribute('class', 'delete-smaller');
   buttons.appendChild(deleteSmaller);
-  deleteSmaller.addEventListener('click', () => {
+  deleteSmaller.innerHTML = 'Delete book';
+
+  deleteSmaller.addEventListener('click', (e) => {
     e.preventDefault()
     myLibrary.splice(index, 1);
-    renderLibrary()
-  });
+    removeAllChildren();
+    renderLibrary();
+});
 }
-
 
 function renderLibrary() {
   /* Renders the whole library stored in myLibrary.
   Uses renderEntry() */
+
+  removeAllChildren();
 
   myLibrary.forEach((book, index) => {
     renderEntry(book, index)
   });
 }
 
-renderLibrary();
-/*
-To do: 
+window.onload = renderLibrary();
 
-1) Find out how to use the id for the library. DONE use index
-2) Make a function which pulls data from the library and renders it 
-   as an item in the list with the appropriate html and css.
-3) Make a button which changes read status. DONE
-4) Make a button which deletes the entry.
-*/
+function setReadText(readValue) {
+  /* Changes the read value from string to boolean */
+  let value;
+
+  if (readValue == "yes") {
+    value = "Read";
+  } else {
+    value = "Unread";
+  }
+  return value;
+}
